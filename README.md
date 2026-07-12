@@ -1,5 +1,7 @@
 # Wanderlust
 
+[Live Demo](https://wanderlust-4ics.onrender.com)
+
 Wanderlust is a full-stack travel stay listing project inspired by vacation rental platforms. It is built with Node.js, Express, MongoDB, EJS, and Bootstrap, and focuses on creating, viewing, editing, and deleting property listings with a clean MVC-style structure.
 
 ## Features
