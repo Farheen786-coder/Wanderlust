@@ -24,6 +24,7 @@
                 <option value="Arctic" <%= listing.category === "Arctic" ? "selected" : "" %>>Arctic</option>
                 <option value="Domes" <%= listing.category === "Domes" ? "selected" : "" %>>Domes</option>
                 <option value="Boats" <%= listing.category === "Boats" ? "selected" : "" %>>Boats</option>
+                <option value="Beach" <%= listing.category === "Beach" ? "selected" : "" %>>Beach</option>
             </select>
                          
         </div>
@@ -37,8 +38,8 @@
             <img src="<%= originalImageUrl %>" />
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Upload New Image Or Else No Change</label>
-            <input name="listing[image]" type="file" class="form-control">
+            <label for="image" class="form-label">Upload New Image(s) Or Else No Change</label>
+            <input name="listing[image]" type="file" class="form-control" multiple>
         </div>
         <div class="row">
             <div class="mb-3 col-md-4">

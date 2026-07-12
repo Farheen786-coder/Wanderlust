@@ -1,7 +1,7 @@
 const sampleListings = [
   {
     title: "Cozy Beachfront Cottage",
-    category: "Beachfront", // <-- New category field
+    category: "Beach", // <-- New category field
     description:
       "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
     image: {
@@ -14,7 +14,7 @@ const sampleListings = [
   },
   {
     title: "Modern Loft in Downtown",
-    category: "Urban", // <-- New category field
+    category: "Iconic Cities", // <-- New category field
     description:
       "Stay in the heart of the city in this stylish loft apartment. Perfect for urban explorers!",
     image: {
@@ -66,7 +66,7 @@ const sampleListings = [
   },
   {
     title: "Beachfront Paradise",
-    category: "Beachfront", // <-- New category field
+    category: "Beach", // <-- New category field
     description:
       "Step out of your door onto the sandy beach. This beachfront condo offers the ultimate relaxation.",
     image: {
@@ -365,7 +365,7 @@ const sampleListings = [
   },
   {
     title: "Secluded Beach House in Costa Rica",
-    category: "Boats", // Assigned to Boats filter
+    category: "Beach", // Assigned to Beach filter
     description:
       "Escape to a secluded beach house on the Pacific coast of Costa Rica. Surf, relax, and unwind.",
     image: {
@@ -375,6 +375,32 @@ const sampleListings = [
     price: 1800,
     location: "Costa Rica",
     country: "Costa Rica",
+  },
+  {
+    title: "Aurora Glass Cabin",
+    category: "Arctic",
+    description:
+      "Unwind in a glass-walled cabin with snowy landscapes and a front-row seat to the northern lights.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2600,
+    location: "Tromsø",
+    country: "Norway",
+  },
+  {
+    title: "Geodesic Dome Retreat",
+    category: "Domes",
+    description:
+      "Stay in a cozy geodesic dome surrounded by quiet forest views and a peaceful off-grid atmosphere.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1900,
+    location: "Reykjavík",
+    country: "Iceland",
   },
 ];
 

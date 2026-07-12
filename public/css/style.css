@@ -5,6 +5,34 @@ body {
     min-height: 100vh;
 }
 
+:root {
+    --app-bg: #ffffff;
+    --app-text: #222222;
+    --app-surface: #ffffff;
+    --app-muted: #ebebeb;
+    --app-border: #dee2e6;
+    --app-overlay: rgba(255, 255, 255, 0.2);
+    --app-input-bg: #ffffff;
+    --app-input-text: #222222;
+}
+
+html[data-theme="dark"],
+body[data-theme="dark"] {
+    --app-bg: #0f172a;
+    --app-text: #e5e7eb;
+    --app-surface: #111827;
+    --app-muted: #1f2937;
+    --app-border: #374151;
+    --app-overlay: rgba(15, 23, 42, 0.35);
+    --app-input-bg: #0b1220;
+    --app-input-text: #e5e7eb;
+}
+
+body {
+    background-color: var(--app-bg) !important;
+    color: var(--app-text) !important;
+}
+
 .container {
     flex: 1;
 }
@@ -12,7 +40,8 @@ body {
 /* Navbar */
 .navbar {
     height: 5rem;
-    background-color: white;
+    background-color: var(--app-surface) !important;
+    color: var(--app-text) !important;
 }
 
 .fa-compass {
@@ -21,13 +50,13 @@ body {
 }
 
 .nav-link {
-    color: #222222 !important;
+    color: var(--app-text) !important;
 }
 
 /* Footer */
 .f-info-links a {
     text-decoration: none;
-    color: #222222;
+    color: var(--app-text);
 }
 
 .f-info-links a:hover {
@@ -49,7 +78,8 @@ body {
 .f-info {
     height: 8rem;
     text-align: center;
-    background-color: #ebebeb;
+    background-color: var(--app-muted) !important;
+    color: var(--app-text) !important;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -87,7 +117,7 @@ body {
 
 .card-img-overlay:hover {
     opacity: 0.2;
-    background-color: white;
+    background-color: var(--app-overlay);
 }
 
 /* New Page */
@@ -117,6 +147,102 @@ body {
 .show-card {
     padding-left: 0;
     padding-right: 0;
+}
+
+.card,
+.listing-card,
+.show-card {
+    background-color: var(--app-surface) !important;
+    color: var(--app-text) !important;
+}
+
+.form-control,
+.search-inp {
+    background-color: var(--app-input-bg) !important;
+    color: var(--app-input-text) !important;
+    border-color: var(--app-border) !important;
+}
+
+.tax-toggle {
+    background-color: var(--app-surface) !important;
+    color: var(--app-text) !important;
+    border-color: var(--app-border) !important;
+}
+
+html[data-theme="dark"] .navbar,
+body[data-theme="dark"] .navbar,
+html[data-theme="dark"] .card,
+body[data-theme="dark"] .card,
+html[data-theme="dark"] .listing-card,
+body[data-theme="dark"] .listing-card,
+html[data-theme="dark"] .show-card,
+body[data-theme="dark"] .show-card,
+html[data-theme="dark"] .f-info,
+body[data-theme="dark"] .f-info,
+html[data-theme="dark"] .tax-toggle,
+body[data-theme="dark"] .tax-toggle {
+    background-color: var(--app-surface) !important;
+    color: var(--app-text) !important;
+    border-color: var(--app-border) !important;
+}
+
+html[data-theme="dark"] .form-control,
+body[data-theme="dark"] .form-control,
+html[data-theme="dark"] .search-inp,
+body[data-theme="dark"] .search-inp {
+    background-color: var(--app-input-bg) !important;
+    color: var(--app-input-text) !important;
+    border-color: var(--app-border) !important;
+}
+
+html[data-theme="dark"] .nav-link,
+body[data-theme="dark"] .nav-link,
+html[data-theme="dark"] .f-info-links a,
+body[data-theme="dark"] .f-info-links a {
+    color: var(--app-text) !important;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    padding: 0;
+}
+
+.theme-toggle.theme-toggle-active {
+    width: auto;
+    gap: 0.35rem;
+    padding: 0 0.7rem;
+}
+
+.theme-toggle .theme-icon {
+    width: 1rem;
+    height: 1rem;
+    display: none;
+}
+
+.theme-toggle-text {
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+body:not([data-theme="dark"]) .theme-icon-moon,
+html:not([data-theme="dark"]) .theme-icon-moon {
+    display: block;
+}
+
+body[data-theme="dark"] .theme-icon-sun,
+html[data-theme="dark"] .theme-icon-sun {
+    display: block;
+}
+
+#scrollLeftBtn,
+#scrollRightBtn {
+    background-color: var(--app-surface);
+    color: var(--app-text);
 }
 
 /* Map

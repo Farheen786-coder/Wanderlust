@@ -7,6 +7,23 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
+        trim: true,
+    },
+    googleId: {
+        type: String,
+        index: {
+            unique: true,
+            sparse: true,
+        },
+    },
+    authProvider: {
+        type: String,
+        enum: ["local", "google"],
+        default: "local",
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
     }
 });
 

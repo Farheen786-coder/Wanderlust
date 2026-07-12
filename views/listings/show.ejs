@@ -31,7 +31,7 @@
                 </p>
             </div>
         </div>
-    
+
         <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
         <div class="btns">
             <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark edit-btn col-1 offset-3">Edit</a>
@@ -77,25 +77,107 @@
             <% if(listing.reviews.length>0){ %>
                 <div class="row">
                     <p><b>All Reviews</b></p>
-                    <% for(review of listing.reviews) { %>
+                    <% for(let review of listing.reviews) { %>
                         <div class="card col-5 ms-3 mb-3">
                             <div class="card-body mb-2">
-                                <h5 class="card-title">@<%= review.author.username %></h5>
+                                <h5 class="card-title">@<%= review.author ? review.author.username : "User" %></h5>
                                 <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
                                 <p class="card-text"><%= review.comment %></p>
                             </div>
-                            <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" class="mb-3">
-                                <button class="btn btn-sm btn-dark">Delete</button>
-                            </form>
+                            <% if(currUser && review.author && (String(currUser._id) === String(review.author._id) || currUser.isAdmin)) { %>
+                                <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" class="mb-3">
+                                    <button class="btn btn-sm btn-dark">Delete</button>
+                                </form>
+                            <% } %>
                         </div>
                     <% } %>
                 </div>
             <% } %>
         </div>
-        <!-- <div class="col-8 offset-3 mb-3">
-            <h3>Where you'll be</h3>
-            <div id="map"></div>
-        </div> -->
-    </div>
 
-<!-- <script src="/js/map.js"></script> -->
+        <% if (process.env.MAPBOX_TOKEN && listing.geometry && listing.geometry.coordinates) { %>
+            <div class="col-8 offset-3 mb-4">
+                <h4>Where you'll be</h4>
+                <div id="listingMap" style="height: 320px; border-radius: 1rem; overflow: hidden;"></div>
+            </div>
+            <script>
+                window.mapConfig = {
+                    type: "single",
+                    container: "listingMap",
+                    accessToken: "<%= process.env.MAPBOX_TOKEN || '' %>",
+                    coordinates: <%- JSON.stringify(listing.geometry.coordinates) %>,
+                    zoom: 10,
+                    popupHtml: <%- JSON.stringify(`<h4>${listing.title}</h4><p>Exact location will be provided after booking!</p>`) %>,
+                };
+            </script>
+            <script src="/js/map.js"></script>
+        <% } %>
+
+        <% if (currUser && String(currUser._id) !== String(listing.owner._id)) { %>
+            <div class="col-8 offset-3 mb-4">
+                <div class="card p-3">
+                    <h4 class="mb-3">Book this stay</h4>
+                    <form id="bookingForm" class="row g-2">
+                        <div class="col-md-6">
+                            <label class="form-label" for="checkIn">Check-in</label>
+                            <input id="checkIn" name="checkIn" type="date" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="checkOut">Check-out</label>
+                            <input id="checkOut" name="checkOut" type="date" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <button id="bookingSubmitBtn" class="btn btn-danger mt-2" type="submit">Book now</button>
+                            <div id="bookingMessage" class="small"></div>
+                        </div>
+                    </form>
+                </div>
+                <script>
+                    window.bookingConfig = {
+                        listingId: "<%= listing._id %>",
+                    };
+                </script>
+                <script src="/js/booking.js"></script>
+            </div>
+        <% } %>
+
+        <% if (currUser) { %>
+            <div class="col-8 offset-3 mb-5">
+                <div class="card p-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0">Chat with the host</h4>
+                        <span id="chatStatus" class="small text-muted">Connecting...</span>
+                    </div>
+                    <div id="chatMessages" class="mt-3 mb-3" style="max-height: 280px; overflow-y: auto;"></div>
+                    <form id="chatForm" class="d-flex gap-2">
+                        <input
+                            id="chatInput"
+                            type="text"
+                            class="form-control"
+                            placeholder="Write a message"
+                            maxlength="2000"
+                            autocomplete="off"
+                            required
+                        />
+                        <button class="btn btn-dark" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+            <script>
+                window.chatConfig = {
+                    listingId: "<%= listing._id %>",
+                    currentUserId: "<%= currUser._id %>",
+                };
+                window.initialChatMessages = <%- JSON.stringify(chatMessages) %>;
+            </script>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/js/chat.js"></script>
+        <% } else { %>
+            <div class="col-8 offset-3 mb-5">
+                <div class="card p-3">
+                    <h4 class="mb-2">Chat with the host</h4>
+                    <p class="mb-0">Login to start a conversation with the host.</p>
+                </div>
+            </div>
+        <% } %>
+    </div>

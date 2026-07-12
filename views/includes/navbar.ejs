@@ -48,6 +48,17 @@
         </div>
         <div class="navbar-nav ms-auto">
           <a class="nav-link" href="/listings/new">Airbnb your home</a>
+          <button
+            id="themeToggle"
+            type="button"
+            class="btn btn-outline-secondary btn-sm ms-2 me-2 theme-toggle"
+            aria-label="Switch to dark mode"
+            aria-pressed="false"
+          >
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7.5 7.5 0 0 0 9.8 9.8Z"></path>
+            </svg>
+          </button>
           <% if (currUser) { %>
             <a class="nav-link" href="/logout"><b>Log Out</b></a>
           <% } else { %>

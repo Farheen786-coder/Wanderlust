@@ -13,12 +13,37 @@ const listingSchema = new Schema({
         url: String,
         filename: String,
     },
+    images: [
+        {
+            url: String,
+            filename: String,
+        },
+    ],
     price: Number,
     location: String,
     country: String,
     category: { // New field added for filtering
         type: String,
         required: true,
+    },
+    capacity: {
+        type: Number,
+        default: 1,
+        min: 1,
+    },
+    amenities: {
+        type: [String],
+        default: [],
+    },
+    geometry: {
+        type: {
+            type: String,
+            enum: ["Point"],
+            default: "Point",
+        },
+        coordinates: {
+            type: [Number],
+        },
     },
     reviews: [
         {
@@ -39,18 +64,9 @@ listingSchema.post("findOneAndDelete", async (listing) => {
     }
 });
 
+listingSchema.index({ geometry: "2dsphere" });
+listingSchema.index({ price: 1, category: 1, capacity: 1 });
+listingSchema.index({ amenities: 1 });
+
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;
-
-
-// geometry: {
-//     type: {
-//         type: String, // Don't do `{ location: { type: String } }`
-//         enum: ['Point'], // 'location.type' must be 'Point'
-//         required: true
-//     },
-//     coordinates: {
-//         type: [Number],
-//         required: true
-//     }
-// }

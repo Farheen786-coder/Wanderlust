@@ -147,6 +147,21 @@
         </div>
     </div>
 
+    <% if (process.env.MAPBOX_TOKEN && mapListings && mapListings.length > 0) { %>
+        <div class="mt-4 mb-4">
+            <div id="listingsMap" style="height: 400px; border-radius: 1rem; overflow: hidden;"></div>
+        </div>
+        <script>
+            window.mapConfig = {
+                type: "cluster",
+                container: "listingsMap",
+                accessToken: "<%= process.env.MAPBOX_TOKEN || '' %>",
+                features: <%- JSON.stringify(mapListings) %>,
+            };
+        </script>
+        <script src="/js/map.js"></script>
+    <% } %>
+
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
         <% for(let listing of allListings){ %>
             <a href="/listings/<%= listing._id %>" class="listing-link">
