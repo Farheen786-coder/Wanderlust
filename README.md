@@ -1,45 +1,65 @@
-# Wanderlust
+# 🌍 WanderLust
 
-[Live Demo](https://wanderlust-4ics.onrender.com)
+> **Explore. Book. Experience.** <br>
+> A full-stack travel stay listing project inspired by vacation rental platforms, enabling users to seamlessly browse, publish, and manage property listings.
 
-Wanderlust is a full-stack travel stay listing project inspired by vacation rental platforms. It is built with Node.js, Express, MongoDB, EJS, and Bootstrap, and focuses on creating, viewing, editing, and deleting property listings with a clean MVC-style structure.
+**🚀 [Live Demo](https://wanderlust-4ics.onrender.com)**
 
-## Features
+<img width="1872" height="975" alt="Screenshot 2026-08-24 011533" src="https://github.com/user-attachments/assets/b764414e-9aae-4eb2-9eed-07e662639885" />
 
-- Create, read, update, and delete stay listings
-- Server-rendered UI using EJS templates
-- MongoDB data storage with Mongoose models
-- Category-based listing filters in the UI
-- Search listings by title or location in the controller layer
-- Review model and review routes for user feedback
-- User authentication modules using Passport and `passport-local-mongoose`
-- Cloudinary storage configuration for image uploads
-- Seed script for loading starter listing data
+WanderLust is engineered with a scalable MVC backend architecture, integrating secure cloud-based media storage and providing a dynamic, interactive user experience for travelers and hosts alike.
 
-## Tech Stack
+## ✨ Core Features
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- EJS and EJS-Mate
-- Bootstrap
-- Passport.js
-- Cloudinary
-- Joi
+### 🔍 Dynamic Search & Category Filtering
+Users can easily navigate through listings using intuitive category filters or the dedicated destination search bar.
+- Calculates and toggles total prices including taxes in real-time.
+- Server-rendered UI using EJS templates for fast destination retrieval.
 
-## Project Structure
+**Category Filtering:**
+<img width="1799" height="896" alt="Screenshot 2026-08-24 011558" src="https://github.com/user-attachments/assets/a8f42972-3265-4634-ba15-1810a0348d7f" />
+
+**Destination Search:**
+<img width="1909" height="899" alt="Screenshot 2026-08-24 011642" src="https://github.com/user-attachments/assets/6264242b-18e3-4d5d-a240-f8a4d50fa71f" />
+
+### 🏡 Comprehensive Listing Management
+Property pages provide rich details, pricing, location data, and owner information. 
+- Integrated with **Cloudinary API** for secure, optimized cloud-based media storage and dynamic image delivery.
+- Role-based authorization ensures only listing owners can edit or delete their properties.
+
+<img width="1881" height="910" alt="Screenshot 2026-08-24 011717" src="https://github.com/user-attachments/assets/1d0bcfb2-7718-4edc-959a-9ba2ab0a76ca" />
+
+### ⭐ User-Generated Reviews & Booking
+A fully authenticated review system allows users to leave ratings and comments on their stays.
+- Protects routes with robust authentication middleware (Passport.js & `passport-local-mongoose`) to secure user data.
+- Users can seamlessly leave reviews, manage their own comments, and interact with the booking widget.
+
+<img width="1898" height="908" alt="Screenshot 2026-08-24 011759" src="https://github.com/user-attachments/assets/c71f4c32-95cd-4599-83c8-83abea4c77c7" />
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB Atlas, Mongoose
+- **Cloud Storage:** Cloudinary API
+- **Authentication & Security:** Passport.js, Express Sessions, Joi (Schema Validation)
+- **Frontend:** EJS (Embedded JavaScript templates), Bootstrap, CSS
+
+---
+
+## 📁 Project Structure
 
 ```text
-controllers/   Route controller logic
-models/        Mongoose schemas
-routes/        Express route modules
-views/         EJS templates
-public/        Static CSS and client-side JS
-init/          Database seed files
-utils/         Helper utilities
-app.js         Current local app entrypoint
-```
+Wanderlust/
+├─ controllers/     # Route controller logic
+├─ models/          # Mongoose schemas
+├─ routes/          # Express route modules
+├─ views/           # EJS templates
+├─ public/          # Static CSS and client-side JS
+├─ init/            # Database seed files
+├─ utils/           # Helper utilities
+└─ app.js           # Current local app entrypoint
 
 ## Getting Started
 
